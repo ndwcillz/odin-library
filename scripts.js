@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 const cardContainer = document.getElementById("card-container");
 
@@ -22,6 +22,8 @@ function displayBooks() {
         bookDiv.classList.add("card");
         cardContainer.appendChild(bookDiv);
 
+        bookDiv.dataset.id = book.id;
+
         let bookTitle = document.createElement("h2");
         bookTitle.textContent = book.title;
         bookDiv.appendChild(bookTitle);
@@ -34,14 +36,40 @@ function displayBooks() {
         bookPageNumber.textContent = book.pageNumber;
         bookDiv.appendChild(bookPageNumber);
 
-        let bookRead = document.createElement("p");
-        bookRead.textContent = book.read;
+        let bookReadLabel = document.createElement("label");
+        bookReadLabel.htmlFor = book.id;
+        bookReadLabel.textContent = "Read?: ";
+
+        let bookRead = document.createElement("input");
+        bookRead.type = "checkbox";
+        bookRead.checked = book.read;
+        bookRead.id = book.id;
+        bookDiv.appendChild(bookReadLabel);
         bookDiv.appendChild(bookRead);
+        
+
+        bookRead.addEventListener("change", (event) => {
+            book.toggleRead();
+            displayBooks();
+        });
 
         let bookID = document.createElement("p");
         bookID.textContent = book.id;
         bookDiv.appendChild(bookID);
-    })
+
+        let removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        bookDiv.appendChild(removeBtn);
+
+        removeBtn.addEventListener('click', () => {
+            myLibrary = myLibrary.filter(b => b.id != book.id);
+            displayBooks();
+        });
+    });
+}
+
+Book.prototype.toggleRead = function () {
+    this.read = !this.read;
 }
 
 const newBookBtn = document.getElementById("newBook");
@@ -74,8 +102,6 @@ createBookBtn.addEventListener("submit", function(event) {
     addBookToLibrary(bTitleVal, bAuthorVal, bPgNVal, bReadVal);
 
     this.reset();
-
-    
     displayBooks();
 });
 
