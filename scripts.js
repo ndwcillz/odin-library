@@ -44,7 +44,6 @@ function displayBooks() {
     })
 }
 
-
 const newBookBtn = document.getElementById("newBook");
 const closeFormBtn = document.getElementById("closeForm");
 const formContainer = document.getElementById("formContainer");
@@ -57,5 +56,27 @@ closeFormBtn.addEventListener('click', () => {
     formContainer.classList.remove("show");
 })
 
+const createBookBtn = document.getElementById("bookForm");
 
-displayBooks();
+createBookBtn.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let bTitle = document.getElementById("title");
+    let bAuthor = document.getElementById("author");
+    let bPgN = document.getElementById("pgNum");
+    let bRead = document.getElementById("read");
+
+    bTitleVal = bTitle.value;
+    bAuthorVal = bAuthor.value;
+    bPgNVal = bPgN.value;
+    bReadVal = bRead.checked;
+
+    addBookToLibrary(bTitleVal, bAuthorVal, bPgNVal, bReadVal);
+
+    this.reset();
+
+    
+    displayBooks();
+});
+
+
