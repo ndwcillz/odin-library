@@ -9,6 +9,37 @@
 <body>
     <script src="scripts.js" defer></script>
 
+    <button id="newBook">New Book</button>
+
+    <div id="formContainer" class="formOverlay">
+        <div class="form-card">
+            <button id="closeForm">&times;</button>
+
+            <h2>Book Information</h2>
+            <form>
+                <label for="title">Title: </label>
+                <input type="text" id="title" required>
+
+                <label for="author">Author: </label>
+                <input type="text" id="author" required>
+
+                <label for="pgNum">Number of Pages: </label>
+                <input type="number" id="pgNum" required>
+
+                <label for="read">Have you Read?</label>
+                <input type="checkbox" id="read" required>
+
+                <button type="submit">Submit</button>
+            </form>
+        
+        
+        </div>
+    
+    
+    
+    
+    </div>
+
     <div id="card-container"></div>
 </body>
 </html>

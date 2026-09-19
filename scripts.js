@@ -45,8 +45,17 @@ function displayBooks() {
 }
 
 
-addBookToLibrary("yo wtf", "god damn", "333", "true");
-addBookToLibrary("chud", "dd damn", "3422", "false");
-addBookToLibrary("asdfasdf wtf", "god dddd", "1", "true");
+const newBookBtn = document.getElementById("newBook");
+const closeFormBtn = document.getElementById("closeForm");
+const formContainer = document.getElementById("formContainer");
+
+newBookBtn.addEventListener('click', () => {
+    formContainer.classList.add("show");
+});
+
+closeFormBtn.addEventListener('click', () => {
+    formContainer.classList.remove("show");
+})
+
 
 displayBooks();
