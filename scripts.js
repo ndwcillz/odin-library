@@ -1,14 +1,27 @@
+class Book {
+    constructor(title, author, pageNumber, read, id) {
+        this.title = title;
+        this.author = author;
+        this.pageNumber = pageNumber;
+        this.read = read;
+        this.id = id;
+    }
+
+    toggleRead() {
+        this.read = !this.read; 
+    }
+}
+
+
+
+
+
+
 let myLibrary = [];
 
 const cardContainer = document.getElementById("card-container");
 
-function Book(title, author, pageNumber, read, id) {
-    this.title = title;
-    this.author = author;
-    this.pageNumber = pageNumber;
-    this.read = read;
-    this.id = id;
-}
+
 
 function addBookToLibrary(title, author, pageNumber, read) {
     let id = crypto.randomUUID();
@@ -66,10 +79,6 @@ function displayBooks() {
             displayBooks();
         });
     });
-}
-
-Book.prototype.toggleRead = function () {
-    this.read = !this.read;
 }
 
 const newBookBtn = document.getElementById("newBook");
