@@ -12,16 +12,9 @@ class Book {
     }
 }
 
-
-
-
-
-
 let myLibrary = [];
 
 const cardContainer = document.getElementById("card-container");
-
-
 
 function addBookToLibrary(title, author, pageNumber, read) {
     let id = crypto.randomUUID();
@@ -91,7 +84,7 @@ newBookBtn.addEventListener('click', () => {
 
 closeFormBtn.addEventListener('click', () => {
     formContainer.classList.remove("show");
-})
+});
 
 const createBookBtn = document.getElementById("bookForm");
 
@@ -108,10 +101,27 @@ createBookBtn.addEventListener("submit", function(event) {
     bPgNVal = bPgN.value;
     bReadVal = bRead.checked;
 
+    if (bTitleVal === "") {
+        showError("Enter a title.");
+        return;
+    }
+
+    if (bAuthorVal === "") {
+        showError("Enter an author name.");
+        return;
+    }
+    if (bPgNVal === "") {
+        showError("Enter a page number.");
+        return;
+    }
+
     addBookToLibrary(bTitleVal, bAuthorVal, bPgNVal, bReadVal);
 
     this.reset();
     displayBooks();
 });
 
+function showError(message) {
+    alert(message);
+}
 
